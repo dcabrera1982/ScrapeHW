@@ -12,9 +12,14 @@ app.use(
     })
 );
 
+app.use(express.statice(process.cwd() + "/public"));
+
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+mongoose.connect("mongodb://localhost/ScrapeHW");
+var db = mongoose.connection;
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
