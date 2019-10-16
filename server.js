@@ -12,14 +12,20 @@ app.use(
     })
 );
 
-app.use(express.statice(process.cwd() + "/public"));
+app.use(express.static(process.cwd() + "/public"));
 
 var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+//Let's us know when/if connected to Mongoose
 mongoose.connect("mongodb://localhost/ScrapeHW");
 var db = mongoose.connection;
+
+db.on("erro", console.error.bind(console, "connection error:"));
+db.once("open", function() {
+    console.log("Connected to Mongoose!");
+});
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
