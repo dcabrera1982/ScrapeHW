@@ -19,13 +19,19 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 //Let's us know when/if connected to Mongoose
-mongoose.connect("mongodb://localhost/ScrapeHW");
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost/ScrapeHW";
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology:true });
+
 var db = mongoose.connection;
 
-db.on("erro", console.error.bind(console, "connection error:"));
+db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", function() {
     console.log("Connected to Mongoose!");
 });
+
+var routes = require("./controller/controller.js");
+app.use("/", routes);
 
 var port = process.env.PORT || 3000;
 app.listen(port, function() {
