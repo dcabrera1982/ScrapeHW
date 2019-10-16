@@ -97,7 +97,7 @@ router.get("/clearAll", function(req, res) {
     };
   
     Article.findOne({ _id: articleId })
-      .populate("comment")
+      .populate("comments")
       .exec(function(err, doc) {
         if (err) {
           console.log("Error: " + err);
@@ -120,7 +120,7 @@ router.get("/clearAll", function(req, res) {
         }
       });
   });
-  router.post("/comment/:id", function(req, res) {
+  router.post("/comments/:id", function(req, res) {
     var user = req.body.name;
     var content = req.body.comment;
     var articleId = req.params.id;

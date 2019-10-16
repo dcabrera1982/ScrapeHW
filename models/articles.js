@@ -10,10 +10,10 @@ var ArticleSchema = new Schema({
         type: String,
         required: true
     },
-    comment: [{
+    comments: [{
         type: Schema.Types.ObjectId,
-        ref: "Comment"
+        ref: "Comments"
     }]
 });
-var Article = mongoose.model("Article", ArticleSchema);
-module.exports = Article;
+var Articles = mongoose.model("Articles", ArticleSchema);
+module.exports = Articles;
