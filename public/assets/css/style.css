@@ -17,6 +17,7 @@ body {
   }
   #btnSignUp {
     background-color: #2708b3;
+    color: white;
   }
   #nameComment {
     /*border-bottom: 2px solid #ec407a;*/
