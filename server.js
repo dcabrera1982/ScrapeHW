@@ -33,7 +33,7 @@ db.once("open", function() {
 var routes = require("./controller/controller.js");
 app.use("/", routes);
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 app.listen(port, function() {
     console.log("listening on PORT " + port);
 });
